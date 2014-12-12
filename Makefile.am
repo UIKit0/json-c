@@ -45,6 +45,16 @@ libjson_c_la_SOURCES = \
 	printbuf.c \
 	random_seed.c
 
+MATLAB_ROOT_DIR=/usr/sww/pkg/matlab-r2012b/
+
+fromjson: $(libdir)/libjson-c.a matlab/fromjson.c 
+	$(MATLAB_ROOT_DIR)/bin/mex matlab/fromjson.c CXX="g++" CXXFLAGS="\$$CXXFLAGS -fPIC " CXXLIBS="\$$CXXLIBS " -I$(includedir) $(libdir)/libjson-c.a -output $(libdir)/fromjson.mexa64
+
+tojson: $(libdir)/libjson-c.a matlab/tojson.c 
+	$(MATLAB_ROOT_DIR)/bin/mex matlab/tojson.c CXX="g++" CXXFLAGS="\$$CXXFLAGS -fPIC " CXXLIBS="\$$CXXLIBS " -I$(includedir) $(libdir)/libjson-c.a -output $(libdir)/tojson.mexa64
+
+setjsonfield: $(libdir)/libjson-c.a matlab/setjsonfield.c 
+	$(MATLAB_ROOT_DIR)/bin/mex matlab/setjsonfield.c CXX="g++" CXXFLAGS="\$$CXXFLAGS -fPIC " CXXLIBS="\$$CXXLIBS " -I$(includedir) $(libdir)/libjson-c.a -output $(libdir)/setjsonfield.mexa64
 
 distclean-local:
 	-rm -rf $(testsubdir)
