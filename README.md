@@ -61,3 +61,14 @@ JSON_C_DIR=/path/to/json_c/install
 CFLAGS += -I$(JSON_C_DIR)/include/json-c
 LDFLAGS+= -L$(JSON_C_DIR)/lib -ljson-c
 ```
+
+Compiling the matlab wrappers
+-----------------------------
+Thanks to original matlab wrapper source from https://github.com/christianpanton/matlab-json. Streamlined compilation.
+```bash
+sh autogen.sh
+./configure --enable-shared
+make
+make install
+make fromjson tojson setjsonfield
+```
